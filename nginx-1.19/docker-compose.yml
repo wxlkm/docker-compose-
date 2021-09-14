@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    image: nginx:1.19.0
+    container_name: nginx-web
+    volumes:
+     - ./nginx.conf:/etc/nginx/nginx.conf
+     - ./conf.d:/etc/nginx/conf.d
+     - /u01/javaWeb/portal/ssologin:/u01/javaWeb/portal/ssologin
+     - /u01/javaWeb/portal/ssoht:/u01/javaWeb/portal/ssoht
+     - /u01/javaWeb/portal/jobvue:/u01/javaWeb/portal/jobvue
+     - /u01/javaWeb/portal/data-assets:/u01/javaWeb/portal/data-assets
+    ports:
+     - "80:80"
+     - "8081:8081"
+     - "8082:8082"
+     - "8083:8083"
+     - "8084:8084"
+     - "8085:8085"
+     - "8086:8086"
+     - "8087:8087"
+     - "39100:39100"
+    environment:
+     - NGINX_HOST=szwg.com
+     - NGINX_PORT=8000
+    networks:
+     - nginxnet
+networks:
+  nginxnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.49.0.0/16
+          gateway: 172.49.0.10

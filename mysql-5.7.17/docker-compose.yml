@@ -12,7 +12,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: isi%2020
+      MYSQL_ROOT_PASSWORD: yourpassword
 networks:
   esnet:
     driver: bridge
